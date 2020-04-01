@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
@@ -7,7 +7,7 @@ class App extends Component {
   state = {
     persons: [
       { name: 'Jon', age: '20' },
-      { name: 'Dany', age: '19'}
+      { name: 'Dany', age: '19' }
     ]
   }
 
@@ -17,21 +17,38 @@ class App extends Component {
     // this.state.persons[0].name = 'Jon cena'
 
     // Changing the state values, overwrites the existing ones
-    this.setState ( {
+    this.setState({
       persons: [
         { name: 'Jon cena', age: 22 },
         { name: 'Daenerys', age: 23 }
       ]
-    } )
+    })
 
+  }
+
+
+  nameChangedHandler = event => {
+    this.setState({
+      persons: [
+        { name: 'Jon cena', age: 22 },
+        { name: event.target.value, age: 23 }
+      ]
+    })
   }
   render() {
     return (
       <div className="App">
         <button onClick={this.swicthNameHandler}>Switch states</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>Wow this is working</Person>
-        
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          change={this.nameChangedHandler}>
+          Wow this is working</Person>
+
       </div>
     );
   }
