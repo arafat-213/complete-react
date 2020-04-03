@@ -43,11 +43,16 @@ class App extends Component {
   render () {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'lightgreen',
       font: 'inherit',
+      color: 'white',
       border: '1x solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'green',
+        color: 'black'
+      }
     }
 
     let persons = null
@@ -66,9 +71,22 @@ class App extends Component {
           } ) }
         </div>
       )
+      style.backgroundColor = 'salmon'
+      style[ ':hover' ] = {
+        backgroundColor: 'red',
+        color: 'black'
+      }
     }
+
+    const classes = []
+    if ( this.state.persons.length <= 2 )
+      classes.push( 'red' )
+    if ( this.state.persons.length <= 1 )
+      classes.push( 'bold' )
     return (
       <div className="App">
+        <h1>Hello React!</h1>
+        <p className={ classes.join( ' ' ) }>This is reallly interestingggg</p>
         <button
           onClick={ this.togglePersonsHandler }
           style={ style }>
